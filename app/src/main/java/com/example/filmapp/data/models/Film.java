@@ -5,10 +5,27 @@ import com.google.gson.annotations.SerializedName;
 public class Film {
     String id;
     String title;
-    @SerializedName("original_title")
-    String originalTitle;
+    String movie_banner;
     String description;
+    String director;
+    String release_date;
+    String running_time;
 
+    public String getMovie_banner() {
+        return movie_banner;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public String getRunning_time() {
+        return running_time;
+    }
     public String getId() {
         return id;
     }
@@ -17,9 +34,6 @@ public class Film {
         return title;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
 
     public String getDescription() {
         return description;

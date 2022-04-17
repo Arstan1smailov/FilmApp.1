@@ -6,11 +6,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.filmapp.R;
 import com.example.filmapp.data.models.Film;
+
 import com.example.filmapp.databinding.ItemFilmBinding;
 
 import java.util.ArrayList;
@@ -19,6 +26,11 @@ import java.util.List;
 public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHolder> {
     private List<Film> films = new ArrayList<>();
     public String filmIdKey = "filmKey";
+    public int position;
+    private TextView TV_Title, director, releaseDate, runningTime, filmDescription;
+    private ImageView pic;
+
+
 
     public void setFilms(List<Film> films) {
         this.films = films;
@@ -32,21 +44,17 @@ public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHold
         return new FilmViewHolder(binding);
     }
 
+    public List<Film> getFilms() {
+        return films;
+    }
+
     @NonNull
 
 
     @Override
     public void onBindViewHolder(@NonNull FilmViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.onBind(films.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String filmId;
-                filmId = films.get(position).getId();
-                Bundle bundle = new Bundle();
-                bundle.putString(filmIdKey, filmId);
-            }
-        });
+        this.position = position;
     }
 
     @Override
@@ -62,8 +70,12 @@ public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHold
         }
 
         public void onBind(Film film) {
-
-            binding.title.setText(film.getTitle());
+            Bundle bundle = new Bundle();
+            bundle.putString(filmIdKey, film.getId());
+            itemView.setOnClickListener(Navigation.createNavigateOnClickListener
+                    (R.id.action_filmsFragment_to_FIlmInfoFragment, bundle));
+            System.out.println(bundle.getString(filmIdKey));
+            binding.titleFilm.setText(film.getTitle());
             binding.description.setText(film.getDescription());
         }
     }
