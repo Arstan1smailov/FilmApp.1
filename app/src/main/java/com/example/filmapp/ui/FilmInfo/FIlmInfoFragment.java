@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class FIlmInfoFragment extends Fragment {
     private FragmentFIlmInfoBinding binding;
-    private List<Film> Films = new ArrayList<>();
+    private Film film = new Film();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class FIlmInfoFragment extends Fragment {
             @Override
             public void onResponse(Call<Film> call, Response<Film> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Films.add(response.body());
+                    film = (response.body());
                     SetInfo();
                 } else {
                     Snackbar.make(
@@ -75,12 +75,12 @@ public class FIlmInfoFragment extends Fragment {
     }
 
     private void SetInfo() {
-        binding.TVTitle.setText(Films.get(0).getTitle());
-        binding.diretor.setText("Director: " + Films.get(0).getDirector());
-        binding.releaseDate.setText("Release Date: " + Films.get(0).getRelease_date());
-        binding.runningTime.setText("Movie length: " + Films.get(0).getRunning_time() + "min");
-        Glide.with(binding.Pic).load(Films.get(0).getMovie_banner()).into(binding.Pic);
-        binding.FilmDescription.setText(Films.get(0).getDescription());
+        binding.TVTitle.setText(film.getTitle());
+        binding.diretor.setText("Director: " + film.getDirector());
+        binding.releaseDate.setText("Release Date: " + film.getRelease_date());
+        binding.runningTime.setText("Movie length: " + film.getRunning_time() + "min");
+        Glide.with(binding.Pic).load(film.getMovie_banner()).into(binding.Pic);
+        binding.FilmDescription.setText(film.getDescription());
         binding.TVTitle.setVisibility(View.VISIBLE);
         binding.diretor.setVisibility(View.VISIBLE);
         binding.releaseDate.setVisibility(View.VISIBLE);

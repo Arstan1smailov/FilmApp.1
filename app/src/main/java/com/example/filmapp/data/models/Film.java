@@ -10,6 +10,11 @@ public class Film {
     String director;
     String release_date;
     String running_time;
+    String image;
+
+    public String getImage() {
+        return image;
+    }
 
     public String getMovie_banner() {
         return movie_banner;
