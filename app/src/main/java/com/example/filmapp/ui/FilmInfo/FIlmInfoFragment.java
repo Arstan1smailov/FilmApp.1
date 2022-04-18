@@ -6,17 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.filmapp.App;
-import com.example.filmapp.R;
 import com.example.filmapp.data.models.Film;
 import com.example.filmapp.databinding.FragmentFIlmInfoBinding;
 import com.example.filmapp.ui.films_list.FilmsAdapter;
@@ -32,7 +28,7 @@ import retrofit2.Response;
 
 public class FIlmInfoFragment extends Fragment {
     private FragmentFIlmInfoBinding binding;
-    private List<Film> Films =  new ArrayList<>();
+    private List<Film> Films = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +38,6 @@ public class FIlmInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentFIlmInfoBinding.inflate(inflater, container, false);
         return binding.getRoot();
 

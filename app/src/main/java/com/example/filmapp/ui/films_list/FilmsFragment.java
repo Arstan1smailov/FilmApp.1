@@ -1,29 +1,21 @@
 package com.example.filmapp.ui.films_list;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.filmapp.App;
 import com.example.filmapp.R;
 import com.example.filmapp.data.models.Film;
 
 import com.example.filmapp.databinding.FragmentFilmsBinding;
-import com.example.filmapp.ui.FilmInfo.FIlmInfoFragment;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FilmsFragment extends Fragment  {
+public class FilmsFragment extends Fragment {
     private FragmentFilmsBinding binding;
     private FilmsAdapter adapter;
 

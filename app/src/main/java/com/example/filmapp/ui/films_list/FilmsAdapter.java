@@ -2,16 +2,10 @@ package com.example.filmapp.ui.films_list;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,10 +21,6 @@ public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHold
     private List<Film> films = new ArrayList<>();
     public String filmIdKey = "filmKey";
     public int position;
-    private TextView TV_Title, director, releaseDate, runningTime, filmDescription;
-    private ImageView pic;
-
-
 
     public void setFilms(List<Film> films) {
         this.films = films;
@@ -40,16 +30,9 @@ public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHold
     @NonNull
     @Override
     public FilmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemFilmBinding binding = ItemFilmBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false);
+        ItemFilmBinding binding = ItemFilmBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new FilmViewHolder(binding);
     }
-
-    public List<Film> getFilms() {
-        return films;
-    }
-
-    @NonNull
-
 
     @Override
     public void onBindViewHolder(@NonNull FilmViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -64,6 +47,7 @@ public class FilmsAdapter extends RecyclerView.Adapter<FilmsAdapter.FilmViewHold
 
     protected class FilmViewHolder extends RecyclerView.ViewHolder {
         private ItemFilmBinding binding;
+
         public FilmViewHolder(@NonNull ItemFilmBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
