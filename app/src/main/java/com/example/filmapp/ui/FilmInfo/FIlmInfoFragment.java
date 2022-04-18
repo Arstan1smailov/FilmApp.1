@@ -32,12 +32,10 @@ import retrofit2.Response;
 public class FIlmInfoFragment extends Fragment {
     private FragmentFIlmInfoBinding binding;
     private List<Film> Films =  new ArrayList<>();
-    private FilmInfoAdapter infoAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         infoAdapter = new FilmInfoAdapter();
     }
 
     @Override
@@ -65,6 +63,12 @@ public class FIlmInfoFragment extends Fragment {
                     binding.runningTime.setText("Movie length: " + Films.get(0).getRunning_time() + "min");
                     Glide.with(binding.Pic).load(Films.get(0).getMovie_banner()).into(binding.Pic);
                     binding.FilmDescription.setText(Films.get(0).getDescription());
+                    binding.TVTitle.setVisibility(View.VISIBLE);
+                    binding.diretor.setVisibility(View.VISIBLE);
+                    binding.releaseDate.setVisibility(View.VISIBLE);
+                    binding.runningTime.setVisibility(View.VISIBLE);
+                    binding.FilmDescription.setVisibility(View.VISIBLE);
+                    binding.Pic.setVisibility(View.VISIBLE);
                 } else {
                     Snackbar.make(
                             binding.getRoot(),
