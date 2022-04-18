@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class FIlmInfoFragment extends Fragment {
     private FragmentFIlmInfoBinding binding;
-    private List<Film> Film =  new ArrayList<>();
+    private List<Film> Films =  new ArrayList<>();
     private FilmInfoAdapter infoAdapter;
 
     @Override
@@ -46,6 +46,7 @@ public class FIlmInfoFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentFIlmInfoBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
     }
 
     @Override
@@ -53,12 +54,17 @@ public class FIlmInfoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle;
         bundle = getArguments();
-        binding.recycler2.setAdapter(infoAdapter);
         App.api.getFilmDetail(bundle.getString("filmKey")).enqueue(new Callback<Film>() {
             @Override
             public void onResponse(Call<Film> call, Response<Film> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    infoAdapter.setFilms(response.body());
+                    Films.add(response.body());
+                    binding.TVTitle.setText(Films.get(0).getTitle());
+                    binding.diretor.setText("Director: " + Films.get(0).getDirector());
+                    binding.releaseDate.setText("Release Date: " + Films.get(0).getRelease_date());
+                    binding.runningTime.setText("Movie length: " + Films.get(0).getRunning_time() + "min");
+                    Glide.with(binding.Pic).load(Films.get(0).getMovie_banner()).into(binding.Pic);
+                    binding.FilmDescription.setText(Films.get(0).getDescription());
                 } else {
                     Snackbar.make(
                             binding.getRoot(),
