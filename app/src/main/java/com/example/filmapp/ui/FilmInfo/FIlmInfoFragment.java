@@ -12,6 +12,7 @@ import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.filmapp.App;
@@ -57,18 +58,7 @@ public class FIlmInfoFragment extends Fragment {
             public void onResponse(Call<Film> call, Response<Film> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Films.add(response.body());
-                    binding.TVTitle.setText(Films.get(0).getTitle());
-                    binding.diretor.setText("Director: " + Films.get(0).getDirector());
-                    binding.releaseDate.setText("Release Date: " + Films.get(0).getRelease_date());
-                    binding.runningTime.setText("Movie length: " + Films.get(0).getRunning_time() + "min");
-                    Glide.with(binding.Pic).load(Films.get(0).getMovie_banner()).into(binding.Pic);
-                    binding.FilmDescription.setText(Films.get(0).getDescription());
-                    binding.TVTitle.setVisibility(View.VISIBLE);
-                    binding.diretor.setVisibility(View.VISIBLE);
-                    binding.releaseDate.setVisibility(View.VISIBLE);
-                    binding.runningTime.setVisibility(View.VISIBLE);
-                    binding.FilmDescription.setVisibility(View.VISIBLE);
-                    binding.Pic.setVisibility(View.VISIBLE);
+                    SetInfo();
                 } else {
                     Snackbar.make(
                             binding.getRoot(),
@@ -87,5 +77,20 @@ public class FIlmInfoFragment extends Fragment {
                 ).setBackgroundTint(Color.RED).show();
             }
         });
+    }
+
+    private void SetInfo() {
+        binding.TVTitle.setText(Films.get(0).getTitle());
+        binding.diretor.setText("Director: " + Films.get(0).getDirector());
+        binding.releaseDate.setText("Release Date: " + Films.get(0).getRelease_date());
+        binding.runningTime.setText("Movie length: " + Films.get(0).getRunning_time() + "min");
+        Glide.with(binding.Pic).load(Films.get(0).getMovie_banner()).into(binding.Pic);
+        binding.FilmDescription.setText(Films.get(0).getDescription());
+        binding.TVTitle.setVisibility(View.VISIBLE);
+        binding.diretor.setVisibility(View.VISIBLE);
+        binding.releaseDate.setVisibility(View.VISIBLE);
+        binding.runningTime.setVisibility(View.VISIBLE);
+        binding.FilmDescription.setVisibility(View.VISIBLE);
+        binding.Pic.setVisibility(View.VISIBLE);
     }
 }
